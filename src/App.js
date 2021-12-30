@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
+import TimerControls from "./components/TimerControls";
+import TimerDisplay from "./components/TimerDisplay";
 
 function App() {
   const [sessionTimer, setSessionTimer] = useState(1500);
-  const [sessionIsActive, setSessionIsActive] = useState(false);
+  const [sessionIsActive, setSessionIsActive] = useState(true);
   const [sessionLength, setSessionLength] = useState(1500);
 
   const [breakTimer, setBreakTimer] = useState(300);
   const [breakIsActive, setBreakIsActive] = useState(false);
   const [breakLength, setBreakLength] = useState(300);
 
+  const [isPaused, setIsPaused] = useState(true);
+
   //countdown for session timer
   useEffect(() => {
     let sessionInterval = null;
-    if (sessionIsActive) {
+    if (sessionIsActive && !isPaused) {
       sessionInterval = setInterval(sessionCountdown, 1000);
     }
     if (sessionTimer <= 0) {
@@ -22,12 +26,12 @@ function App() {
       setSessionTimer(1500);
     }
     return () => clearInterval(sessionInterval);
-  }, [sessionIsActive, sessionTimer]);
+  }, [sessionIsActive, sessionTimer, isPaused]);
 
   // countdown for break timer
   useEffect(() => {
     let breakInterval = null;
-    if (breakIsActive) {
+    if (breakIsActive && !isPaused) {
       breakInterval = setInterval(breakCountdown, 1000);
     }
     if (breakTimer <= 0) {
@@ -37,16 +41,16 @@ function App() {
       setBreakTimer(300);
     }
     return () => clearInterval(breakInterval);
-  }, [breakIsActive, breakTimer]);
+  }, [breakIsActive, breakTimer, isPaused]);
 
   const sessionCountdown = () => setSessionTimer((prevTime) => prevTime - 1);
 
   const breakCountdown = () => setBreakTimer((prevTime) => prevTime - 1);
 
-  const handleTimer = () => setSessionIsActive((prevIsActive) => !prevIsActive);
+  const handleTimer = () => setIsPaused((prevIsPaused) => !prevIsPaused);
 
   const handleReset = () => {
-    setSessionIsActive(false);
+    setSessionIsActive(true);
     setBreakIsActive(false);
     setSessionLength(1500);
     setSessionTimer(1500);
@@ -55,13 +59,13 @@ function App() {
   };
 
   const sessionIncrement = () => {
-    if (sessionLength + 60 > 3600 || sessionIsActive) return;
+    if (sessionLength + 60 > 3600) return;
     setSessionLength((prevLength) => prevLength + 60);
     setSessionTimer(sessionLength + 60);
   };
 
   const sessionDecrement = () => {
-    if (sessionLength - 60 <= 0 || sessionIsActive) return;
+    if (sessionLength - 60 <= 0) return;
     setSessionLength((prevLength) => prevLength - 60);
     setSessionTimer(sessionLength - 60);
   };
@@ -78,42 +82,27 @@ function App() {
   };
 
   return (
-    <>
+    <div className="w-full h-screen flex flex-col justify-start items-center text-white bg-gradient-to-b from-neutral-800 to-neutral-900">
       <header>
         <h1>Pomo</h1>
         <p>focus timer</p>
       </header>
-      <section>
-        <p id="session-label">Focus length</p>
-        <button id="session-decrement" onClick={sessionDecrement}>
-          dwn
-        </button>
-        <span>{sessionLength}</span>
-        <button id="session-increment" onClick={sessionIncrement}>
-          up
-        </button>
-        <p id="break-label">Break length</p>
-        <button id="break-decrement" onClick={breakDecrement}>
-          dwn
-        </button>
-        <span>{breakLength}</span>
-        <button id="break-increment" onClick={breakIncrement}>
-          up
-        </button>
-      </section>
-      <main>
-        <h2 id="timer-label">Focus Session</h2>
-        <h2 id="time-left">{sessionTimer}</h2>
-      </main>
-      <section>
-        <button id="start_stop" onClick={handleTimer}>
-          play/pause
-        </button>
-        <button id="reset" onClick={handleReset}>
-          reset
-        </button>
-      </section>
-    </>
+      <TimerControls
+        sessionLength={sessionLength}
+        breakLength={breakLength}
+        sessInc={sessionIncrement}
+        sessDec={sessionDecrement}
+        breakInc={breakIncrement}
+        breakDec={breakDecrement}
+      />
+      <TimerDisplay
+        handleTimer={handleTimer}
+        handleReset={handleReset}
+        sessionTimer={sessionTimer}
+        sessionIsActive={sessionIsActive}
+        breakTimer={breakTimer}
+      />
+    </div>
   );
 }
 
