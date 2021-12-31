@@ -5,11 +5,11 @@ import TimerDisplay from "./components/TimerDisplay";
 function App() {
   const [sessionTimer, setSessionTimer] = useState(1500);
   const [sessionIsActive, setSessionIsActive] = useState(true);
-  const [sessionLength, setSessionLength] = useState(1500);
+  const [sessionLength, setSessionLength] = useState(25);
 
   const [breakTimer, setBreakTimer] = useState(300);
   const [breakIsActive, setBreakIsActive] = useState(false);
-  const [breakLength, setBreakLength] = useState(300);
+  const [breakLength, setBreakLength] = useState(5);
 
   const [isPaused, setIsPaused] = useState(true);
 
@@ -23,10 +23,10 @@ function App() {
       clearInterval(sessionInterval);
       setSessionIsActive(false);
       setBreakIsActive(true);
-      setSessionTimer(1500);
+      setSessionTimer(sessionLength * 60);
     }
     return () => clearInterval(sessionInterval);
-  }, [sessionIsActive, sessionTimer, isPaused]);
+  }, [sessionIsActive, sessionTimer, isPaused, sessionLength]);
 
   // countdown for break timer
   useEffect(() => {
@@ -38,10 +38,10 @@ function App() {
       clearInterval(breakInterval);
       setBreakIsActive(false);
       setSessionIsActive(true);
-      setBreakTimer(300);
+      setBreakTimer(breakLength * 60);
     }
     return () => clearInterval(breakInterval);
-  }, [breakIsActive, breakTimer, isPaused]);
+  }, [breakIsActive, breakTimer, isPaused, breakLength]);
 
   const sessionCountdown = () => setSessionTimer((prevTime) => prevTime - 1);
 
@@ -52,39 +52,40 @@ function App() {
   const handleReset = () => {
     setSessionIsActive(true);
     setBreakIsActive(false);
-    setSessionLength(1500);
+    setSessionLength(25);
     setSessionTimer(1500);
-    setBreakLength(300);
+    setBreakLength(5);
     setBreakTimer(300);
+    setIsPaused(true);
   };
 
   const sessionIncrement = () => {
-    if (sessionLength + 60 > 3600) return;
-    setSessionLength((prevLength) => prevLength + 60);
-    setSessionTimer(sessionLength + 60);
+    if (sessionLength + 1 > 60) return;
+    setSessionLength((prevLength) => prevLength + 1);
+    setSessionTimer(sessionLength * 60 + 60);
   };
 
   const sessionDecrement = () => {
-    if (sessionLength - 60 <= 0) return;
-    setSessionLength((prevLength) => prevLength - 60);
-    setSessionTimer(sessionLength - 60);
+    if (sessionLength - 1 <= 0) return;
+    setSessionLength((prevLength) => prevLength - 1);
+    setSessionTimer(sessionLength * 60 - 60);
   };
 
   const breakIncrement = () => {
-    if (breakLength + 60 > 3600) return;
-    setBreakLength((prevLength) => prevLength + 60);
-    setBreakTimer(breakLength + 60);
+    if (breakLength + 1 > 60) return;
+    setBreakLength((prevLength) => prevLength + 1);
+    setBreakTimer(breakLength * 60 + 60);
   };
   const breakDecrement = () => {
-    if (breakLength - 60 <= 0) return;
-    setBreakLength((prevLength) => prevLength - 60);
-    setBreakTimer((prevBreakTimer) => prevBreakTimer - 60);
+    if (breakLength - 1 <= 0) return;
+    setBreakLength((prevLength) => prevLength - 1);
+    setBreakTimer(breakLength * 60 - 60);
   };
 
   return (
-    <div className="w-full h-screen flex flex-col justify-start items-center text-white bg-gradient-to-b from-neutral-800 to-neutral-900">
+    <div className="w-full h-screen flex flex-col justify-start items-center text-center text-white bg-gradient-to-b from-neutral-800 to-neutral-900">
       <header>
-        <h1>Pomo</h1>
+        <h1 className="">Pomo</h1>
         <p>focus timer</p>
       </header>
       <TimerControls
@@ -94,6 +95,7 @@ function App() {
         sessDec={sessionDecrement}
         breakInc={breakIncrement}
         breakDec={breakDecrement}
+        isPaused={isPaused}
       />
       <TimerDisplay
         handleTimer={handleTimer}
@@ -101,6 +103,7 @@ function App() {
         sessionTimer={sessionTimer}
         sessionIsActive={sessionIsActive}
         breakTimer={breakTimer}
+        isPaused={isPaused}
       />
     </div>
   );
