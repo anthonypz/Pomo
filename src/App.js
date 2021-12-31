@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TimerControls from "./components/TimerControls";
 import TimerDisplay from "./components/TimerDisplay";
+import bellSound from "../src/assets/bell.mp3";
 
 function App() {
   const [sessionTimer, setSessionTimer] = useState(1500);
@@ -20,6 +21,7 @@ function App() {
       sessionInterval = setInterval(sessionCountdown, 1000);
     }
     if (sessionTimer <= 0) {
+      handleBeep();
       clearInterval(sessionInterval);
       setSessionIsActive(false);
       setBreakIsActive(true);
@@ -35,6 +37,7 @@ function App() {
       breakInterval = setInterval(breakCountdown, 1000);
     }
     if (breakTimer <= 0) {
+      handleBeep();
       clearInterval(breakInterval);
       setBreakIsActive(false);
       setSessionIsActive(true);
@@ -57,6 +60,7 @@ function App() {
     setBreakLength(5);
     setBreakTimer(300);
     setIsPaused(true);
+    bell.current.load();
   };
 
   const sessionIncrement = () => {
@@ -82,6 +86,13 @@ function App() {
     setBreakTimer(breakLength * 60 - 60);
   };
 
+  const bell = useRef(null);
+  const handleBeep = () => {
+    if (bell.current !== null) {
+      bell.current.play();
+    }
+  };
+
   return (
     <div className="w-full h-screen flex flex-col justify-start items-center text-center text-white bg-gradient-to-b from-neutral-800 to-neutral-900">
       <header>
@@ -105,6 +116,7 @@ function App() {
         breakTimer={breakTimer}
         isPaused={isPaused}
       />
+      <audio id="beep" ref={bell} src={bellSound} />
     </div>
   );
 }
