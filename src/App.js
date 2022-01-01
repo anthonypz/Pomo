@@ -94,10 +94,10 @@ function App() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col justify-start items-center text-center text-white bg-gradient-to-b from-neutral-800 to-neutral-900">
+    <div className="min-w-fit min-h-screen flex flex-col justify-center items-center text-center text-zinc-100 bg-gradient-to-b from-zinc-800 to-neutral-900">
       <header>
-        <h1 className="">Pomo</h1>
-        <p>focus timer</p>
+        <h1 className="text-4xl font-bold text-zinc-100 pt-2">Pomo</h1>
+        <p className="text-base font-thin pb-1 text-zinc-200">focus timer</p>
       </header>
       <TimerControls
         sessionLength={sessionLength}

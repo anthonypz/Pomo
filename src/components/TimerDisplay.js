@@ -20,24 +20,37 @@ export default function TimerDisplay({
 
   return (
     <>
-      <main>
-        <h2 id="timer-label">
+      <main className="bg-zinc-200 text-black rounded-md p-3 w-64 h-36 flex flex-col justify-center">
+        <h2 id="timer-label" className="text-xl font-medium">
           {sessionIsActive ? "Focus Session" : "Break Session"}
         </h2>
-        <h2 id="time-left">
+        <h2
+          id="time-left"
+          className="text-6xl font-medium pt-1 font-mono tabular-nums"
+        >
           {sessionIsActive ? formatTime(sessionTimer) : formatTime(breakTimer)}
         </h2>
       </main>
-      <section>
-        <button id="start_stop" onClick={handleTimer}>
+      <section className="pt-6">
+        <button
+          id="start_stop"
+          onClick={handleTimer}
+          title="Play/Pause"
+          className="px-2 mx-3"
+        >
           {isPaused ? (
-            <PlayIcon className="h-5 w-5 text-blue-500" />
+            <PlayIcon className="h-12 w-12 text-blue-500" />
           ) : (
-            <PauseIcon className="h-5 w-5 text-blue-500" />
+            <PauseIcon className="h-12 w-12 text-blue-500" />
           )}
         </button>
-        <button id="reset" onClick={handleReset}>
-          <RefreshIcon className="h-5 w-5 text-blue-500" />
+        <button
+          id="reset"
+          onClick={handleReset}
+          title="Reset all timers"
+          className="px-2 mx-3"
+        >
+          <RefreshIcon className="h-12 w-12 text-blue-500" />
         </button>
       </section>
     </>
