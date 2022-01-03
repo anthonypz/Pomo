@@ -20,7 +20,7 @@ export default function TimerControls({
           <button
             id="session-decrement"
             onClick={sessDec}
-            disabled={!isPaused}
+            disabled={!isPaused || sessionLength <= 1}
             className="p-1 disabled:opacity-40 text-blue-500 disabled:text-gray-600"
             title="Decrease"
           >
@@ -32,7 +32,7 @@ export default function TimerControls({
           <button
             id="session-increment"
             onClick={sessInc}
-            disabled={!isPaused}
+            disabled={!isPaused || sessionLength >= 60}
             className="p-1 disabled:opacity-40 text-blue-500 disabled:text-gray-600"
             title="Increase"
           >
@@ -48,7 +48,7 @@ export default function TimerControls({
           <button
             id="break-decrement"
             onClick={breakDec}
-            disabled={!isPaused}
+            disabled={!isPaused || breakLength <= 1}
             className="p-1 disabled:opacity-40 text-blue-500 disabled:text-gray-600"
             title="Decrease"
           >
@@ -60,7 +60,7 @@ export default function TimerControls({
           <button
             id="break-increment"
             onClick={breakInc}
-            disabled={!isPaused}
+            disabled={!isPaused || breakLength >= 60}
             className="p-1 disabled:opacity-40 text-blue-500 disabled:text-gray-600"
             title="Increase"
           >
