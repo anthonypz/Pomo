@@ -11,7 +11,7 @@ Focus Timer is a pomodoro timer app built with React and Tailwindcss. The projec
 
 ## Screenshots
 
-<img src="https://github.com/anthonypz/focus-timer/blob/main/src/assets/screenshot.png" width=400>
+<img src="https://github.com/anthonypz/focus-timer/blob/main/src/assets/screenshot.png" width=500>
 
 ## Run Locally
 
