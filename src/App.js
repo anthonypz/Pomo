@@ -64,24 +64,24 @@ function App() {
   };
 
   const sessionIncrement = () => {
-    if (sessionLength + 1 > 60) return;
+    if (sessionLength >= 60) return;
     setSessionLength((prevLength) => prevLength + 1);
     setSessionTimer(sessionLength * 60 + 60);
   };
 
   const sessionDecrement = () => {
-    if (sessionLength - 1 <= 0) return;
+    if (sessionLength <= 1) return;
     setSessionLength((prevLength) => prevLength - 1);
     setSessionTimer(sessionLength * 60 - 60);
   };
 
   const breakIncrement = () => {
-    if (breakLength + 1 > 60) return;
+    if (breakLength >= 60) return;
     setBreakLength((prevLength) => prevLength + 1);
     setBreakTimer(breakLength * 60 + 60);
   };
   const breakDecrement = () => {
-    if (breakLength - 1 <= 0) return;
+    if (breakLength <= 1) return;
     setBreakLength((prevLength) => prevLength - 1);
     setBreakTimer(breakLength * 60 - 60);
   };
