@@ -20,7 +20,7 @@ export default function TimerDisplay({
 
   return (
     <>
-      <main className="bg-zinc-200 text-black rounded-md p-3 w-64 h-36 flex flex-col justify-center">
+      <main className="bg-zinc-900/25 text-zinc-100 rounded-full border-4 border-blue-500/75 p-3 w-60 h-60 flex flex-col justify-center">
         <h2 id="timer-label" className="text-xl font-medium">
           {sessionIsActive ? "Focus Session" : "Break Session"}
         </h2>
