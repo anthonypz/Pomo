@@ -18,7 +18,7 @@ Focus Timer is a pomodoro timer app built with React and Tailwindcss. The projec
 Clone the project
 
 ```bash
-  git clone https://github.com/anthonypz/tenzies.git
+  git clone https://github.com/anthonypz/focus-timer.git
 ```
 
 Go to the project directory
