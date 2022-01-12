@@ -1,6 +1,6 @@
 # Focus Timer
 
-Focus Timer is a pomodoro timer app built with React and Tailwindcss. The project is a part of freeCodeCamp's 300-hour [Front End Development Certification](https://www.freecodecamp.org/learn/front-end-development-libraries/). A list of [user stories](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-25--5-clock) were provided, which had to be built to specification. This is the last of 5 total projects.
+Focus Timer is a pomodoro timer app built with React and Tailwindcss. The project is a part of freeCodeCamp's 300-hour [Front End Development Certification](https://www.freecodecamp.org/learn/front-end-development-libraries/). A list of [user stories](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-25--5-clock) were provided, which had to be built to specification. This is the project 5 of 5.
 
 ## Features
 
@@ -41,4 +41,4 @@ Start the server
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/anthonypz/focus-timer/blob/main/LICENSE)
