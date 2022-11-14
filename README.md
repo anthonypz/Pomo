@@ -1,43 +1,22 @@
-# Focus Timer
+# Pomo
 
-Focus Timer is a pomodoro timer app built with React and Tailwindcss. The project is a part of freeCodeCamp's 300-hour [Front End Development Certification](https://www.freecodecamp.org/learn/front-end-development-libraries/). A list of [user stories](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-25--5-clock) were provided, which had to be built to specification. This is the project 5 of 5.
+Pomo is a pomodoro app that helps you focus by setting aside time blocks on important tasks - the goal is to work on a given task with zero interuptions. After you've successfully completed a focus session, you reward yourself with a short break. Repeat this process to break up large tasks into smaller, manageable chunks.
 
-## Features
+**Link to project:** https://pomo.pereza.dev/
 
-- Set your own work/break length
-- Play sound when completed
-- Play/Pause the timers
-- Reset the timers
+<img src="https://github.com/anthonypz/focus-timer/blob/main/src/assets/pomo.webp" width='300'>
 
-## Screenshots
+## How It's Made:
 
-<img src="https://github.com/anthonypz/focus-timer/blob/main/src/assets/screenshot.png" width=500>
+**Tech used:** HTML, CSS, JavaScript, React, Tailwind CSS
 
-## Run Locally
+- React hooks, state, useEffect for counting down the timer using setInterval, and conditional rendering for displaying different text and activating/deacting buttons based on state
 
-Clone the project
+This app was built with React for the interactive UI and Tailwind CSS for the styling. React hooks (useState and useEffect) were used to manage state and side effects. I used conditional rendering to display different text, insert class names to html elements, and deactivate buttons based on state. Tailwind CSS made styling a breeze because it allowed me to interate quickly without sacrificing customizability or design quality.
 
-```bash
-  git clone https://github.com/anthonypz/focus-timer.git
-```
+## Lessons Learned:
 
-Go to the project directory
-
-```bash
-  cd focus-timer
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-Start the server
-
-```bash
-  npm run start
-```
+Building this app taught me how to work with multiple pieces of state and manage how they interact with each other. Things can easily get messy as you increase the number of useState hooks to manage state. To manage complexity, I made sure that I understood the problem I was trying to solve first. Then I broke the problem down into smaller chunks using pseudocode. From there, writing out a solution became much easier since most of the hard work takes place before you write out a single line of code.
 
 ## License
 
