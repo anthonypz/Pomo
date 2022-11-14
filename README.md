@@ -10,8 +10,6 @@ Pomo is a pomodoro app that helps you focus by setting aside time blocks on impo
 
 **Tech used:** HTML, CSS, JavaScript, React, Tailwind CSS
 
-- React hooks, state, useEffect for counting down the timer using setInterval, and conditional rendering for displaying different text and activating/deacting buttons based on state
-
 This app was built with React for the interactive UI and Tailwind CSS for the styling. React hooks (useState and useEffect) were used to manage state and side effects. I used conditional rendering to display different text, insert class names to html elements, and deactivate buttons based on state. Tailwind CSS made styling a breeze because it allowed me to interate quickly without sacrificing customizability or design quality.
 
 ## Lessons Learned:
