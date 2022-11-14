@@ -1,5 +1,4 @@
 import React from "react";
-import { PlayIcon, PauseIcon, RefreshIcon } from "@heroicons/react/solid";
 
 export default function TimerDisplay({
   handleTimer,
@@ -31,28 +30,6 @@ export default function TimerDisplay({
           {sessionIsActive ? formatTime(sessionTimer) : formatTime(breakTimer)}
         </h2>
       </main>
-      <section className="pt-6">
-        <button
-          id="start_stop"
-          onClick={handleTimer}
-          title="Play/Pause"
-          className="px-2 mx-3"
-        >
-          {isPaused ? (
-            <PlayIcon className="h-12 w-12 text-blue-500" />
-          ) : (
-            <PauseIcon className="h-12 w-12 text-blue-500" />
-          )}
-        </button>
-        <button
-          id="reset"
-          onClick={handleReset}
-          title="Reset all timers"
-          className="px-2 mx-3"
-        >
-          <RefreshIcon className="h-12 w-12 text-blue-500" />
-        </button>
-      </section>
     </>
   );
 }

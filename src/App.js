@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import TimerControls from "./components/TimerControls";
 import TimerDisplay from "./components/TimerDisplay";
+import { PlayIcon, PauseIcon, RefreshIcon } from "@heroicons/react/solid";
 import bellSound from "../src/assets/bell.mp3";
 
 function App() {
@@ -52,7 +53,16 @@ function App() {
 
   const handleTimer = () => setIsPaused((prevIsPaused) => !prevIsPaused);
 
+  const [rotate, setRotate] = useState(false);
+  const rotateBtn = () => {
+    setRotate(true);
+    setTimeout(() => {
+      setRotate(false);
+    }, 500);
+  };
+
   const handleReset = () => {
+    rotateBtn();
     setSessionIsActive(true);
     setBreakIsActive(false);
     setSessionLength(25);
@@ -116,6 +126,34 @@ function App() {
         breakTimer={breakTimer}
         isPaused={isPaused}
       />
+      <section className="pt-6">
+        <button
+          id="start_stop"
+          onClick={handleTimer}
+          title="Play/Pause"
+          className="px-2 mx-3"
+        >
+          {isPaused ? (
+            <PlayIcon className="h-12 w-12 text-blue-500" />
+          ) : (
+            <PauseIcon className="h-12 w-12 text-blue-500" />
+          )}
+        </button>
+        <button
+          id="reset"
+          onClick={handleReset}
+          title="Reset all timers"
+          className="px-2 mx-3"
+        >
+          <RefreshIcon
+            className={
+              rotate
+                ? "h-12 w-12 text-blue-500 -rotate-180 duration-200 ease-in"
+                : "h-12 w-12 text-blue-500"
+            }
+          />
+        </button>
+      </section>
       <audio id="beep" ref={bell} src={bellSound} />
     </div>
   );
