@@ -126,33 +126,43 @@ function App() {
         breakTimer={breakTimer}
         isPaused={isPaused}
       />
-      <section className='pt-6'>
-        <button
-          id='start_stop'
-          onClick={handleTimer}
-          title='Play/Pause'
-          className='px-2 mx-3'
-        >
-          {isPaused ? (
-            <PlayIcon className='h-12 w-12 text-blue-500' />
-          ) : (
-            <PauseIcon className='h-12 w-12 text-blue-500' />
-          )}
-        </button>
-        <button
-          id='reset'
-          onClick={handleReset}
-          title='Reset all timers'
-          className='px-2 mx-3'
-        >
-          <RefreshIcon
-            className={
-              rotate
-                ? 'h-12 w-12 text-blue-500 -rotate-180 duration-200 ease-in'
-                : 'h-12 w-12 text-blue-500'
-            }
-          />
-        </button>
+      <section className='pt-6 flex'>
+        <div className='flex flex-col p-2 items-center'>
+          <button
+            id='start_stop'
+            onClick={handleTimer}
+            title='Play/Pause'
+            className='px-2 mx-3'
+          >
+            {isPaused ? (
+              <PlayIcon className='h-12 w-12 text-blue-500' />
+            ) : (
+              <PauseIcon className='h-12 w-12 text-blue-500' />
+            )}
+          </button>
+          <label htmlFor='start-stop' className='w-28 mt-1'>
+            {isPaused ? 'Start Timer' : 'Pause Timer'}
+          </label>
+        </div>
+        <div className='flex flex-col p-2 items-center'>
+          <button
+            id='reset'
+            onClick={handleReset}
+            title='Reset all timers'
+            className='px-2 mx-3'
+          >
+            <RefreshIcon
+              className={
+                rotate
+                  ? 'h-12 w-12 text-blue-500 -rotate-180 duration-200 ease-in'
+                  : 'h-12 w-12 text-blue-500'
+              }
+            />
+          </button>
+          <label htmlFor='reset' className='w-28 mt-1'>
+            Reset Timer
+          </label>
+        </div>
       </section>
       <audio id='beep' ref={bell} src={bellSound} />
     </div>
