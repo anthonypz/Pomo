@@ -140,7 +140,7 @@ function App() {
               <PauseIcon className='h-12 w-12 text-blue-500' />
             )}
           </button>
-          <label htmlFor='start-stop' className='w-28 mt-1'>
+          <label htmlFor='start_stop' className='w-28 mt-1'>
             {isPaused ? 'Start Timer' : 'Pause Timer'}
           </label>
         </div>
