@@ -2,7 +2,7 @@
 
 Pomo is a pomodoro app that helps you focus by setting aside time blocks on important tasks - the goal is to work on a given task with zero interuptions. After you've successfully completed a focus session, you reward yourself with a short break. Repeat this process to break up large tasks into smaller, manageable chunks.
 
-**Link to project:** https://pomo.pereza.dev/
+**Link to project:** https://focuspomotimer.netlify.app/
 
 <img src="https://github.com/anthonypz/focus-timer/blob/main/src/assets/pomo.webp" width='300'>
 
